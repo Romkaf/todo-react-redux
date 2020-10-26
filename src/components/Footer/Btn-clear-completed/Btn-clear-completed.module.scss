@@ -1,0 +1,9 @@
+@import '@styles/mixins.scss';
+
+.btn {
+	margin: 10px 0;
+
+	@include hoverSupport {
+		text-decoration: underline;
+	}
+}
