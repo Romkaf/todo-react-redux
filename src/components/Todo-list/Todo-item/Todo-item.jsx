@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Todo-item.module.scss';
-import { keyCode } from '@constants/constants';
+import { keyCode } from '@constants';
 import classNames from 'classnames';
 
 export default class TodoItem extends Component {

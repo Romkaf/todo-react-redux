@@ -3,7 +3,7 @@ import Header from '@components/Header';
 import TodoList from '@components/Todo-list';
 import Footer from '@components/Footer';
 import styles from './App.module.scss';
-import { locStorKey } from '@constants/constants';
+import { locStorKey } from '@constants';
 import '@styles/scaffolding.scss';
 
 export default class App extends PureComponent {

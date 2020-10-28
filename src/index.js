@@ -2,9 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
+import { locStorKey } from '@constants';
 
 import '@styles/reset.css';
 import App from '@components/App';
+
+store.subscribe(() => {
+	localStorage.setItem(locStorKey, JSON.stringify(store.getState()));
+});
 
 ReactDOM.render(
 	<Provider store={store}>

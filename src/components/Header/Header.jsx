@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addTodo, selectAllTodo } from '@models/actions';
 import styles from './Header.module.scss';
-import { keyCode } from '@constants/constants';
+import { keyCode } from '@constants';
 import classNames from 'classnames';
 
 class Header extends Component {
