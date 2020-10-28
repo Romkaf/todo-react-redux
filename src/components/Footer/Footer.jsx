@@ -1,35 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Footer.module.scss';
 import Counter from './Counter';
 import Filter from './Filter';
 import BtnClearCompleted from './Btn-clear-completed';
+import { connect } from 'react-redux';
+import { deleteComoletedTodo, changeFilter } from '@models/actions';
+import styles from './Footer.module.scss';
 
 const Footer = ({
-	activeTodosAmount,
-	completedTodosAmount,
-	onFilterChange,
+	todosArray,
+	deleteComoletedTodo,
+
+	changeFilter,
+
 	filter,
-	onCompletedTodoDelete,
 }) => {
+	const activeTodoCount = todosArray.filter((it) => it.completed === false)
+		.length;
+	const completedTodoCount = todosArray.length - activeTodoCount;
+
+	if (todosArray.length === 0) {
+		return null;
+	}
+
 	return (
 		<footer className={styles.footer}>
-			<Counter activeTodosAmount={activeTodosAmount} />
-			<Filter onFilterChange={onFilterChange} filter={filter} />
+			<Counter activeTodosAmount={activeTodoCount} />
+			<Filter onFilterChange={changeFilter} filter={filter} />
 			<BtnClearCompleted
-				completedTodosAmount={completedTodosAmount}
-				onCompletedDelete={onCompletedTodoDelete}
+				completedTodosAmount={completedTodoCount}
+				onCompletedDelete={deleteComoletedTodo}
 			/>
 		</footer>
 	);
 };
 
-export default Footer;
+const mapStateToProps = ({ todosArray, filter }) => ({
+	todosArray,
+	filter,
+});
+
+const mapDispatchToProps = { deleteComoletedTodo, changeFilter };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);
 
 Footer.propTypes = {
-	completedTodosAmount: PropTypes.number,
-	activeTodosAmount: PropTypes.number,
-	onFilterChange: PropTypes.func,
+	todosArray: PropTypes.arrayOf(PropTypes.object),
+	changeFilter: PropTypes.func,
 	filter: PropTypes.string,
-	onCompletedTodoDelete: PropTypes.func,
+	deleteComoletedTodo: PropTypes.func,
 };

@@ -5,7 +5,6 @@ import { deleteTodo, selectTodo, editTodo } from '@models/actions';
 import PropTypes from 'prop-types';
 
 const TodoList = ({ todosArray, selectTodo, deleteTodo, editTodo }) => {
-	console.log(todosArray);
 	const todos = todosArray.map((it) => {
 		return (
 			<li key={it.id}>

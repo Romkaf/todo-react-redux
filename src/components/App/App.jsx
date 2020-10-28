@@ -138,32 +138,16 @@ export default class App extends PureComponent {
 
 	render() {
 		const { todosArray, filter } = this.state;
-		const activeTodoCount = todosArray.filter((it) => it.completed === false)
-			.length;
-		const completedTodoCount = todosArray.length - activeTodoCount;
+
 		const visibleTodos = this.filterTodos(todosArray, filter);
 
 		return (
 			<div className={styles.app}>
 				<Header />
 				<main>
-					<TodoList
-						todosArray={visibleTodos}
-						onTodoSelect={this.handleTodoSelect}
-						onTodoDelete={this.handleTodoDelete}
-						onTodoEdit={this.handleTodoEdit}
-					/>
+					<TodoList />
 				</main>
-				{todosArray.length > 0 && (
-					<Footer
-						className={styles.hidden}
-						activeTodosAmount={activeTodoCount}
-						completedTodosAmount={completedTodoCount}
-						onFilterChange={this.handleFilterChange}
-						filter={filter}
-						onCompletedTodoDelete={this.handleCompletedTodoDelete}
-					/>
-				)}
+				<Footer />
 			</div>
 		);
 	}
