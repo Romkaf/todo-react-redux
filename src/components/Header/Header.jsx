@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addTodo, selectAllTodo } from '@models/actions';
 import styles from './Header.module.scss';
 import { keyCode } from '@constants/constants';
 import classNames from 'classnames';
 
-export default class Header extends Component {
+class Header extends Component {
 	state = {
 		value: '',
 	};
 
 	handleValidateValue = (evt) => {
 		const validateValue = evt.target.value.trim().replace(/\s+/g, ' ');
-		if (validateValue) this.props.onTodoAdd(validateValue);
+		if (validateValue) this.props.addTodo(validateValue);
 		this.setState({ value: '' });
 	};
 
@@ -37,7 +39,7 @@ export default class Header extends Component {
 			header__choiceAll_selected,
 			header__input,
 		} = styles;
-		const { todosArray, onAllTodoSelect } = this.props;
+		const { todosArray, selectAllTodo } = this.props;
 		const className = classNames(header__choiceAll, {
 			hidden: !todosArray.length,
 			[header__choiceAll_selected]: todosArray.every((it) => it.completed),
@@ -46,7 +48,7 @@ export default class Header extends Component {
 		return (
 			<header className={header}>
 				<h1 className={header__title}>ToDo</h1>
-				<span className={className} onClick={onAllTodoSelect}>
+				<span className={className} onClick={selectAllTodo}>
 					&#8249;
 				</span>
 				<input
@@ -63,8 +65,19 @@ export default class Header extends Component {
 	}
 }
 
+const mapStateToProps = ({ todosArray }) => ({
+	todosArray,
+});
+
+const mapDispatchToProps = {
+	addTodo,
+	selectAllTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
 Header.propTypes = {
 	todosArray: PropTypes.arrayOf(PropTypes.object),
-	onTodoAdd: PropTypes.func,
-	onAllTodoSelect: PropTypes.func,
+	addTodo: PropTypes.func,
+	selectAllTodo: PropTypes.func,
 };

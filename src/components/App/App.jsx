@@ -145,11 +145,7 @@ export default class App extends PureComponent {
 
 		return (
 			<div className={styles.app}>
-				<Header
-					onTodoAdd={this.handleTodoAdd}
-					todosArray={todosArray}
-					onAllTodoSelect={this.handleAllTodosSelect}
-				/>
+				<Header />
 				<main>
 					<TodoList
 						todosArray={visibleTodos}
