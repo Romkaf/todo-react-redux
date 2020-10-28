@@ -4,7 +4,7 @@ import { locStorKey } from '@constants';
 
 const persistedState = localStorage.getItem(locStorKey)
 	? JSON.parse(localStorage.getItem(locStorKey))
-	: {};
+	: undefined;
 
 const store = createStore(reducer, persistedState);
 

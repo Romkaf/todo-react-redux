@@ -7,14 +7,7 @@ import { connect } from 'react-redux';
 import { deleteComoletedTodo, changeFilter } from '@models/actions';
 import styles from './Footer.module.scss';
 
-const Footer = ({
-	todosArray,
-	deleteComoletedTodo,
-
-	changeFilter,
-
-	filter,
-}) => {
+const Footer = ({ todosArray, deleteComoletedTodo, changeFilter, filter }) => {
 	const activeTodoCount = todosArray.filter((it) => it.completed === false)
 		.length;
 	const completedTodoCount = todosArray.length - activeTodoCount;

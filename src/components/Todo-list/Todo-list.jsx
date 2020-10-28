@@ -1,10 +1,22 @@
 import React from 'react';
 import TodoItem from './Todo-item';
 import { connect } from 'react-redux';
-import { deleteTodo, selectTodo, editTodo } from '@models/actions';
+import {
+	deleteTodo,
+	selectTodo,
+	editTodo,
+	changeAllCompleted,
+} from '@models/actions';
 import PropTypes from 'prop-types';
 
-const TodoList = ({ todosArray, filter, selectTodo, deleteTodo, editTodo }) => {
+const TodoList = ({
+	todosArray,
+	filter,
+	selectTodo,
+	deleteTodo,
+	editTodo,
+	changeAllCompleted,
+}) => {
 	const filterTodos = (todos, filter) => {
 		switch (filter) {
 			case 'all':
@@ -27,6 +39,7 @@ const TodoList = ({ todosArray, filter, selectTodo, deleteTodo, editTodo }) => {
 					onTodoSelect={() => selectTodo(it.id)}
 					onTodoDelete={() => deleteTodo(it.id)}
 					onTodoEdit={(text) => editTodo(it.id, text)}
+					onAllCompletedChange={changeAllCompleted}
 				/>
 			</li>
 		);
@@ -44,6 +57,7 @@ const mapDispatchToProps = {
 	deleteTodo,
 	selectTodo,
 	editTodo,
+	changeAllCompleted,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

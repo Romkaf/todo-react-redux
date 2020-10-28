@@ -19,6 +19,12 @@ export default class TodoItem extends Component {
 		);
 	}
 
+	componentDidUpdate(prevProps) {
+		if (prevProps.completed !== this.props.completed) {
+			this.props.onAllCompletedChange();
+		}
+	}
+
 	handleTaskDblClick = (evt) => {
 		this.setState({
 			visibilityElement: 'hidden',
@@ -123,4 +129,5 @@ TodoItem.propTypes = {
 	onTodoDelete: PropTypes.func,
 	onTodoEdit: PropTypes.func,
 	onTodoSelect: PropTypes.func,
+	onAllCompletedChange: PropTypes.func,
 };
