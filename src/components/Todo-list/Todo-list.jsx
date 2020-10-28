@@ -1,17 +1,20 @@
 import React from 'react';
 import TodoItem from './Todo-item';
+import { connect } from 'react-redux';
+import { deleteTodo, selectTodo, editTodo } from '@models/actions';
 import PropTypes from 'prop-types';
 
-const TodoList = ({ todosArray, onTodoSelect, onTodoDelete, onTodoEdit }) => {
+const TodoList = ({ todosArray, selectTodo, deleteTodo, editTodo }) => {
+	console.log(todosArray);
 	const todos = todosArray.map((it) => {
 		return (
 			<li key={it.id}>
 				<TodoItem
 					title={it.title}
 					completed={it.completed}
-					onTodoSelect={() => onTodoSelect(it.id)}
-					onTodoDelete={() => onTodoDelete(it.id)}
-					onTodoEdit={(text) => onTodoEdit(it.id, text)}
+					onTodoSelect={() => selectTodo(it.id)}
+					onTodoDelete={() => deleteTodo(it.id)}
+					onTodoEdit={(text) => editTodo(it.id, text)}
 				/>
 			</li>
 		);
@@ -20,11 +23,21 @@ const TodoList = ({ todosArray, onTodoSelect, onTodoDelete, onTodoEdit }) => {
 	return <ul className="todo-list">{todos}</ul>;
 };
 
-export default TodoList;
+const mapStateToProps = ({ todosArray }) => ({
+	todosArray,
+});
+
+const mapDispatchToProps = {
+	deleteTodo,
+	selectTodo,
+	editTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
 
 TodoList.propTypes = {
 	todosArray: PropTypes.arrayOf(PropTypes.object),
-	onTodoDelete: PropTypes.func,
-	onTodoEdit: PropTypes.func,
-	onTodoSelect: PropTypes.func,
+	deleteTodo: PropTypes.func,
+	editTodo: PropTypes.func,
+	selectTodo: PropTypes.func,
 };
