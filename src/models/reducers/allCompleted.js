@@ -3,7 +3,7 @@ import {
 	ADD_TODO,
 	SELECT_ALL_TODO,
 	DELETE_COMPLETED_TODO,
-} from '../actions/actionTypes';
+} from '@models/actions/actionTypes';
 
 const updateAllCompleted = (state, action) => {
 	if (state === undefined) {

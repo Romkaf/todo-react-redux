@@ -1,4 +1,4 @@
-import { FILTER_CHANGE } from '../actions/actionTypes';
+import { FILTER_CHANGE } from '@models/actions/actionTypes';
 
 const updateFilter = (state, action) => {
 	if (state === undefined) {

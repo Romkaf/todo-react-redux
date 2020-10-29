@@ -5,7 +5,7 @@ import {
 	EDIT_TODO,
 	SELECT_ALL_TODO,
 	DELETE_COMPLETED_TODO,
-} from '../actions/actionTypes';
+} from '@models/actions/actionTypes';
 
 const updateTodosArray = (state, action) => {
 	if (state === undefined) {
