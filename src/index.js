@@ -5,6 +5,7 @@ import store from './store';
 import { locStorKey } from '@constants';
 
 import '@styles/reset.css';
+import '@styles/scaffolding.scss';
 import App from '@components/App';
 
 store.subscribe(() => {
