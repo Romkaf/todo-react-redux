@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Todo-item.module.scss';
 import { keyCode } from '@constants';
 import classNames from 'classnames';
 
-export default class TodoItem extends Component {
+export default class TodoItem extends PureComponent {
 	state = {
 		visibilityElement: 'visible',
 		isEditing: false,

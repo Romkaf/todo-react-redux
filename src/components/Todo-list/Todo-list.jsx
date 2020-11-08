@@ -30,15 +30,20 @@ const TodoList = ({
 		}
 	};
 	const visibleTodos = filterTodos(todosArray, filter);
+
+	const handleTodoSelect = (id) => () => selectTodo(id);
+	const handleTodoDelete = (id) => () => deleteTodo(id);
+	const handleTodoEdit = (id) => (text) => editTodo(id, text);
+
 	const todos = visibleTodos.map((it) => {
 		return (
 			<li key={it.id}>
 				<TodoItem
 					title={it.title}
 					completed={it.completed}
-					onTodoSelect={() => selectTodo(it.id)}
-					onTodoDelete={() => deleteTodo(it.id)}
-					onTodoEdit={(text) => editTodo(it.id, text)}
+					onTodoSelect={handleTodoSelect(it.id)}
+					onTodoDelete={handleTodoDelete(it.id)}
+					onTodoEdit={handleTodoEdit(it.id)}
 					onAllCompletedChange={changeAllCompleted}
 				/>
 			</li>

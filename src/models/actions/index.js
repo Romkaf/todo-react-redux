@@ -9,66 +9,55 @@ import {
 	FILTER_CHANGE,
 } from './actionTypes';
 
-const addTodo = (text) => {
+export const addTodo = (text) => {
 	return {
 		type: ADD_TODO,
 		payload: text,
 	};
 };
 
-const deleteTodo = (id) => {
+export const deleteTodo = (id) => {
 	return {
 		type: DELETE_TODO,
 		payload: id,
 	};
 };
 
-const selectTodo = (id) => {
+export const selectTodo = (id) => {
 	return {
 		type: SELECT_TODO,
 		payload: id,
 	};
 };
 
-const selectAllTodo = () => {
+export const selectAllTodo = () => {
 	return {
 		type: SELECT_ALL_TODO,
 	};
 };
 
-const editTodo = (idx, text) => {
+export const editTodo = (idx, text) => {
 	return {
 		type: EDIT_TODO,
 		payload: { idx, text },
 	};
 };
 
-const deleteComoletedTodo = () => {
+export const deleteComoletedTodo = () => {
 	return {
 		type: DELETE_COMPLETED_TODO,
 	};
 };
 
-const changeAllCompleted = () => {
+export const changeAllCompleted = () => {
 	return {
 		type: ALL_COMPLETED_CHANGE,
 	};
 };
 
-const changeFilter = (filter) => {
+export const changeFilter = (filter) => {
 	return {
 		type: FILTER_CHANGE,
 		payload: filter,
 	};
-};
-
-export {
-	addTodo,
-	deleteTodo,
-	selectTodo,
-	selectAllTodo,
-	editTodo,
-	deleteComoletedTodo,
-	changeAllCompleted,
-	changeFilter,
 };
