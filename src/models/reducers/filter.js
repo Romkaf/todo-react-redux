@@ -1,17 +1,11 @@
 import { FILTER_CHANGE } from '@models/actions/actionTypes';
 
-const updateFilter = (state, action) => {
-	if (state === undefined) {
-		return 'all';
-	}
-
+export default (state = 'all', action) => {
 	switch (action.type) {
 		case FILTER_CHANGE:
 			return action.payload;
 
 		default:
-			return state.filter;
+			return state;
 	}
 };
-
-export default updateFilter;

@@ -2,10 +2,10 @@ import { createStore } from 'redux';
 import reducer from '@models/reducers';
 import { locStorKey } from '@constants';
 
-const persistedState = localStorage.getItem(locStorKey)
+const initialState = localStorage.getItem(locStorKey)
 	? JSON.parse(localStorage.getItem(locStorKey))
-	: undefined;
+	: { todosArray: [], filter: 'all' };
 
-const store = createStore(reducer, persistedState);
+const store = createStore(reducer, initialState);
 
 export default store;

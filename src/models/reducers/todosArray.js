@@ -7,31 +7,26 @@ import {
 	DELETE_COMPLETED_TODO,
 } from '@models/actions/actionTypes';
 
-const updateTodosArray = (state, action) => {
-	if (state === undefined) {
-		return [];
-	}
-
-	const { todosArray, allCompleted } = state;
-	let id =
-		todosArray.length === 0 ? 1 : todosArray[todosArray.length - 1].id + 1;
+export default (state = [], action) => {
+	console.log(state);
+	let id = state.length === 0 ? 1 : state[state.length - 1].id + 1;
 
 	switch (action.type) {
 		case ADD_TODO:
-			const createTodo = (title) => {
-				return {
-					title,
+			return [
+				...state,
+				{
+					title: action.payload,
 					id: id++,
 					completed: false,
-				};
-			};
-			return [...todosArray, createTodo(action.payload)];
+				},
+			];
 
 		case DELETE_TODO:
-			return todosArray.filter((it) => !(it.id === action.payload));
+			return state.filter((it) => !(it.id === action.payload));
 
 		case SELECT_TODO:
-			return todosArray.map((it) => {
+			return state.map((it) => {
 				return it.id === action.payload
 					? { ...it, completed: !it.completed }
 					: it;
@@ -39,23 +34,22 @@ const updateTodosArray = (state, action) => {
 
 		case EDIT_TODO:
 			const { idx, text } = action.payload;
-			return todosArray.map((it) => ({
+			return state.map((it) => ({
 				...it,
 				title: it.id === idx ? text : it.title,
 			}));
 
 		case SELECT_ALL_TODO:
-			return todosArray.map((it) => ({
+			const isAllCompleted = state.every((it) => it.completed);
+			return state.map((it) => ({
 				...it,
-				completed: !allCompleted,
+				completed: !isAllCompleted,
 			}));
 
 		case DELETE_COMPLETED_TODO:
-			return todosArray.filter((it) => !it.completed);
+			return state.filter((it) => !it.completed);
 
 		default:
-			return todosArray;
+			return state;
 	}
 };
-
-export default updateTodosArray;
